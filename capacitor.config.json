@@ -1,0 +1,12 @@
+{
+  "appId": "com.locat.monitor",
+  "appName": "متابع لوكيت",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https",
+    "cleartext": true
+  },
+  "android": {
+    "allowMixedContent": true
+  }
+}

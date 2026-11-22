@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>نظام أتمتة ومتابعة لوكيت | Locat Monitor</title>
+    <meta name="description" content="لوحة تحكم ونظام أتمتة متكامل للربط مع العرض المباشر في لوكيت، تتبع المناديب، إرسال تنبيهات الواتساب التلقائية عند التأخير، وإصدار التقارير اليومية." />
+    <meta property="og:title" content="نظام أتمتة ومتابعة لوكيت | Locat Monitor" />
+    <meta property="og:description" content="لوحة تحكم ونظام أتمتة متكامل للربط مع العرض المباشر في لوكيت، تتبع المناديب، إرسال تنبيهات الواتساب التلقائية عند التأخير، وإصدار التقارير اليومية." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#059669" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="متابع لوكيت" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+    <script>
+      (function () {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var isCourier = window.location.pathname === '/courier' || params.get('portal') === 'courier';
+          if (isCourier) {
+            if (window.location.pathname !== '/courier') {
+              var nextParams = new URLSearchParams();
+              var phone = params.get('phone');
+              if (phone) nextParams.set('phone', phone);
+              var qs = nextParams.toString();
+              window.history.replaceState(null, '', '/courier' + (qs ? '?' + qs : ''));
+            }
+            document.title = 'بوابة المندوب لمتابعة الطلبات';
+            var appTitle = document.querySelector('meta[name="apple-mobile-web-app-title"]');
+            if (appTitle) appTitle.setAttribute('content', 'بوابة المندوب');
+            var desc = document.querySelector('meta[name="description"]');
+            if (desc) desc.setAttribute('content', 'بوابة المندوب لاستعراض الطلبات والإحصائيات الشهرية');
+            var ogTitle = document.querySelector('meta[property="og:title"]');
+            if (ogTitle) ogTitle.setAttribute('content', 'بوابة المندوب لمتابعة الطلبات');
+            var ogDesc = document.querySelector('meta[property="og:description"]');
+            if (ogDesc) ogDesc.setAttribute('content', 'بوابة المندوب لاستعراض الطلبات والإحصائيات الشهرية');
+            var link = document.createElement('link');
+            link.rel = 'manifest';
+            link.href = '/courier-manifest.webmanifest';
+            link.setAttribute('data-locat-manifest', 'courier');
+            document.head.appendChild(link);
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-slate-50 text-slate-900 antialiased font-sans">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
